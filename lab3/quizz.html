@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quizz!</title>
+    </head>
+    <body>
+        <H1>Quizz sobre a cidade da Amadora!</H1>
+        <h2>Quizz</h2>
+<form action="" method="get">
+        <fieldset>
+        Nome :  <input type="text" name="nome" size="7"autofocus required> 
+        Apelido:<input type="text" name="apelido" size="7" autofocus required> <br>
+        Email   :  <input type="email" name ="email" autocomplete="off" size="28" autofocus required> <br> 
+        </fieldset>
+        <fieldset>
+            <p>Antes de mais! Já alguma vez foi á cidade da Amadora ? </p>
+         <input type="radio" id="Sim" name ="respostacidade">
+         <label for="Sim"> Sim</label><br>
+         <input type="radio" id="Nao" name ="respostacidade">
+         <label for="Nao"> Não</label><br>
+         <p>Qual/Quais destas freguesias fazem parte da Amadora ?</p>
+         <input type="checkbox" id="Venteira" name="freguesias">
+         <label for="Venteira">Venteira</label>
+         <input type="checkbox" id="Sacavem" name="freguesias">
+         <label for="Sacavem">Sacavem</label>
+         <input type="checkbox" id="Cascais" name="freguesias">
+         <label for="Cascais">Cascais</label>
+         <input type="checkbox" id="Reboleira" name="freguesias">
+         <label for="Reboleira">Reboleira</label> <br> <br>
+         <label for="favcolor">Qual a cor principal do equipamento do Estrela da Amadora ?</label> <br>
+  <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+  <br>       
+     <p>Em que ano a cidade da Amadora foi elevada a concelho?</p>
+     <label for="quantity">Uma pista foi entre 1975 a  1987 </label>
+     <input type="number" id="quantity" name="quantity" placeholder="1900" min="0" max="9" required autofocus maxlength="4"> <br>
+     <p>Quantas freguesias tem o concelho da Amadora?</p>
+     <label for="fregue">Freguesias (entre 1 a 6)</label>
+  <input type="range" id="fregue name="fregue" step="1" min="1" max="6"> <br>
+  <br>
+  <form action="/examples/html/action.php" method="post">
+  <p>A cidade da Amadora faz fronteira com qual concelho ?</p>
+  <input type="text" name="concelhofronteira" id="ccfronteira" size="10" autofocus required>
+  <input type="reset" value="Apagar">
+</form>
+<br>
+  <label for="datamin">Digite a data que respondeu ao formulário:</label>
+  <input type="date" id="data" name="datamin" min="2024-01-01"><br><br>
+ <br>   <label for="appt">Selecione a hora</label>
+ <input type="time" id="appt" name="horas">
+ <br> <br>
+
+ <input type="submit">
+</fieldset>
+</form>
+    </body>
