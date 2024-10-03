@@ -13,4 +13,29 @@ nav{
     background-color:black;
     text-align:center;
     
+
 }
+
+nav > a {
+   color:white;
+}
+main > img {
+    margin:auto;
+}
+
+footer {
+    background-color: black;
+    text-align: center;
+    color:white;
+    
+}
+
+section{
+    padding: 15px;
+    background-color: rgb(221, 215, 215);
+    margin:20px;
+    border: 1px solid black;
+    border-radius: 20px;
+
+}
+
