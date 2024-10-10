@@ -46,9 +46,10 @@ section, #fotografia {
 
 .fotos a img{
     color: black;
-    font-size: 25px;
+    font-size: 125px;
     padding-bottom: 20px;
     padding-left:50px;
+    padding-top:15px;
 
     
 }
@@ -56,8 +57,12 @@ section, #fotografia {
 #fotografia {
     color:black;
     text-align: center;
+}
+
+#fotografia h3 {
     text-decoration: underline;
 }
+
 label {
     font-size: small;
 }
@@ -70,3 +75,8 @@ label, input {
     display: block;
     margin-bottom: 10px;
 }
+
+#fotografia a {
+    text-decoration: none;
+}
+
