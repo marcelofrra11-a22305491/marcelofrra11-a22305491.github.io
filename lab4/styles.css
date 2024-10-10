@@ -26,28 +26,47 @@ main > img {
 footer {
     background-color: black;
     text-align: center;
-    color:white;
+    color:rgba(218, 201, 201, 0.745);
     
 }
 
-section{
+section, #fotografia {
     padding: 15px;
-    background-color: rgb(221, 215, 215);
+    background-color: white;
     margin:20px;
     border: 1px solid black;
     border-radius: 20px;
 
 }
+
   nav > a:hover {
     background-color: #ddd;
     color: black;
 }
 
 .fotos a img{
-    color: #4CAF50;
-    font-size: 24px;
-    border: 2px solid #4CAF50;
+    color: black;
+    font-size: 25px;
     padding-bottom: 20px;
-    
+    padding-left:50px;
 
+    
+}
+
+#fotografia {
+    color:black;
+    text-align: center;
+    text-decoration: underline;
+}
+label {
+    font-size: small;
+}
+
+input {
+    font-size: medium;
+}
+
+label, input {
+    display: block;
+    margin-bottom: 10px;
 }
