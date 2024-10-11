@@ -200,3 +200,6 @@ th {
 tbody tr:hover {
     background-color: #f9f9f9; /* Cor de fundo ao passar o mouse sobre as linhas */
 }
+a[href$=".jpg"], a[href$=".png"], a[href$=".gif"] {
+    cursor: zoom-in;
+  }
