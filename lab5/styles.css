@@ -3,6 +3,13 @@
     margin: 0;
     padding: 0;
 }
+header{
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
 
 h1{
     background-color:cadetblue;
@@ -11,11 +18,12 @@ h1{
 
  section > p{
     text-align: center;
-    border-radius: 0%;
+    border-radius: 0;
+    
 }
 
 nav{
-    background-color:black;
+  
     text-align:center;
     
 
@@ -25,7 +33,11 @@ nav > a {
    color:white;
 }
 main > img {
-    margin:auto;
+    display: block;
+    margin: 0 auto;
+    padding-top: 5%;
+    height: 50%;
+    width: 50%;
 }
 
 footer {
@@ -84,4 +96,107 @@ label, input {
 #fotografia a {
     text-decoration: none;
 }
+section.titulo-menor {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 15px; /* Bordas arredondadas */
+    margin: 20px auto;
+    width: 80%;
+}
 
+section.titulo-menor h2 {
+    font-size: 1.8em;
+}
+
+.separada {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.separada h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.separada p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.pagina {
+    background-color: ghostwhite;
+}
+/* Pontos interesse */
+.pontos-interesse {
+    list-style-type: none; /* Remove marcadores da lista */
+    padding: 0;
+}
+
+.pontos-interesse li {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.pontos-interesse h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.pontos-interesse p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.pontos-interesse img {
+    width: 300px;  /* Definir a largura fixa */
+    height: 200px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/*listas ordenadas */ 
+.separada ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.separada li {
+    margin-bottom: 20px;
+}
+
+.separada h3 {
+    font-size: 1.4em;
+    margin-bottom: 5px;
+}
+
+.separada p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* tabela */ 
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove o espaço entre as células */
+}
+
+th, td {
+    padding: 10px; /* Espaçamento interno das células */
+    text-align: left; /* Alinhamento do texto à esquerda */
+    border-bottom: 1px solid #ddd; /* Borda inferior para separar linhas */
+}
+
+th {
+    background-color: #f2f2f2; /* Cor de fundo para o cabeçalho */
+    font-weight: bold; /* Deixar o texto do cabeçalho em negrito */
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9; /* Cor de fundo ao passar o mouse sobre as linhas */
+}
