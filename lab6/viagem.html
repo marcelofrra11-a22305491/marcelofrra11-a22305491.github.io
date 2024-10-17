@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Viagem</title>
+    </head>
+<body>
+    <form  method="get" action="https://postman-echo.com/get">
+    <fieldset>
+        Nome :  <input type="text" name="nome" size="7"autofocus required> 
+        Apelido:<input type="text" name="apelido" size="7" autofocus required> <br>
+        Email   :  <input type="email" name ="email" autocomplete="off" size="28" autofocus required> <br> 
+        </fieldset>
+        <fieldset>
+            <label for="datapartida">Indique a data de partida:  </label>
+            <input type="date" id="datapartida" name="datapartida" min="2024-09-27"><br>
+            <label for="datachegada">Indique a data de chegada:  </label>
+            <input type="date" id="datachegada" name="datachegada"><br> 
+           <p>Indique o numero de passageiros:  <input type="text" id="numeropessoas" name="numeropessoas" autofocus size="1"></p> 
+           <p>Qual o seu meio de transporte favorito?</p>
+           <input type="radio" id="Carro" name ="respostatransporte">
+           <label for="Carro"> Carro</label><br>
+           <input type="radio" id="Aviao"name ="respostatransporte">
+           <label for="Aviao"> Avião</label><br>
+           <input type="radio" id="Comboio" name ="respostatransporte">
+           <label for="Comboio"> Comboio</label><br>
+           <input type="radio" id="Outros" name ="respostatransporte">
+           <label for="Outros"> Outros</label><br>
+
+           <p>Qual o serviço que deseja na sua viagem</p>
+           <input type="radio" id="basico" name ="respostaservico">
+           <label for="basico"> Básico</label><br>
+           <input type="radio" id="Premium" name ="respostacidade">
+           <label for="Premium"> Premium</label><br>
+
+           <p>Qual o valor que espera gastar por pessoa e por dia ?</p>
+           <p>Por pessoa: <input type="text" id="pessoadinheiro" name="pessoadinheiro" autofocus size="3" > 
+            Por dia: <input type="text" id="diadinheiro" name="diadinheiro" autofocus size="3"  > </p> 
+            <input type="submit">  <input type="reset" value="Apagar">
+        </fieldset>
+        </form>
+</body>

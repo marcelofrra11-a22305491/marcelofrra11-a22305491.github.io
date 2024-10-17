@@ -1,0 +1,248 @@
+* {
+    margin:0;  
+    padding:0;  
+    box-sizing: border-box; /* medidas sao tomadas da borda */
+    header {
+        position: sticky;
+        top: 0;
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      
+      header h1 {
+        font-size: 24px;
+        margin: 0;
+      }
+      
+      header nav {
+        margin: 0;
+        padding: 0;
+      }
+      
+      header nav a {
+        padding: 20px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px;
+      }
+      
+      header nav a:link {
+        background-color: #444;
+      }
+      
+      header nav a:visited {
+        background-color: #555;
+      }
+      
+      header nav a:hover {
+        background-color: #666;
+      }
+      
+      header nav a:active {
+        background-color: #777;
+      }
+      
+      header nav a:last-child {
+        background-color: #999;
+      }
+      
+      header nav a:last-child:hover {
+        background-color: #aaa;
+      }
+  
+  main {
+    height: 90vh;
+    background: purple;
+  }
+  
+  article {
+    height: 100vh;
+    background: orange;
+  }
+  
+  article:last-child {
+    height: 100vh;
+    background: black;
+    color: white;
+  }
+  #poema {
+    width: 100vw;
+    height: 50vh;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #poema div {
+    text-align: center;
+  }
+  
+  #poema div p {
+    font-size: 18px;
+    margin: 10px;
+  }
+  
+  #poema div p:first-child {
+    font-weight: bold;
+  }
+  
+  #poema div p:last-child {
+    font-style: italic;
+    font-size: 14px;
+    color: #666;
+  }
+
+  /*paisagemmmmm */
+  #paisagem {
+    width: 100%;
+    height: 50%;
+    background-color: #f7f7f7;
+  }
+  
+  .imagem-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .imagem-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .imagem-container p {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .imagem-container p a {
+    color: #fff;
+    text-decoration: none;
+  }
+  /* capitais ª*/
+  #cidades {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 20px;
+  }
+  
+  #cidades section {
+    margin: 10px;
+    width: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #cidades section img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  #cidades section div {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+  }
+  
+  #cidades section div:hover {
+    background-color: #ddd;
+  }
+  #experimenta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .circulo {
+    width: 100px;
+    height: 100px;
+    background-color: #f7f7f7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .esconde {
+    width: 100px;
+    height: 100px;
+    background-color: #f7f7f7;
+    display: none;
+    margin: 10px;
+  }
+  
+  .esconde:hover {
+    display: block;
+  }
+  
+  .icone {
+    font-size: 48px;
+    margin: 10px;
+  }
+  
+  .icone:hover {
+    transform: rotate(360deg);
+    transition: 0.5s;
+  }
+  /*experimenta */
+  #experimenta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .circulo {
+    width: 100px;
+    height: 100px;
+    background-color: #f7f7f7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .esconde {
+    width: 100px;
+    height: 100px;
+    background-color: #f7f7f7;
+    display: none;
+    margin: 10px;
+  }
+  
+  .esconde:hover {
+    display: block;
+  }
+  
+  .icone {
+    font-size: 48px;
+    margin: 10px;
+  }
+  
+  .icone:hover {
+    transform: rotate(360deg);
+    transition: 0.5s;
+  }
+}
