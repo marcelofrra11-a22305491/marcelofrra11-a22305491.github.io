@@ -22,9 +22,81 @@ h1{
     
 }
 
-nav{
+nav {
     background-color: #007bff;
-    text-align:center;
+    position: relative; /* Necessário para o posicionamento do dropdown */
+    text-align: center;
+}
+
+.menunormal {
+    display: flex; /* Exibir os links em linha */
+    justify-content: center; /* Centralizar os links */
+    padding: 0 15px; /* Espaçamento dos links */
+}
+
+.menunormal a {
+    color: white;
+    padding: 10px 15px; /* Adicionar algum espaçamento */
+    text-decoration: none; /* Remover sublinhado */
+}
+
+.menunormal a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.dropdown {
+    background-color: #007bff;
+    color: white;
+    padding: 16px;
+    border: none;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position:absolute; 
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 1px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  nav:hover .dropdown-content {display: block;}
+  
+  nav:hover .dropdown {background-color: #007bff;}
+  
+
+/* Estilos para desktop */
+@media (min-width: 769px) {
+    .dropdown {
+        display: none; /* Esconder o dropdown */
+    }
+}
+
+/* Estilos para mobile */
+@media (max-width: 768px) {
+    .menunormal {
+        display: none; /* Esconder o menu normal em dispositivos pequenos */
+    }
+
+    .dropdown {
+        display: block; /* Mostrar o botão do menu dropdown */
+    }
+}
+
+/* Mostrar o conteúdo do dropdown quando o botão for clicado */
+.show {
+    display: block; /* Exibir o conteúdo do dropdown */
 }
 
 nav > a {
