@@ -306,4 +306,91 @@
     font-size: 1.2rem;
     margin-top: 10px;
 }
+
+/*galeriaaaaaaaaaaa*/
+.galeria {
+  padding: 20px;
+  background-color: white; /* Fundo branco para o artigo da galeria */
+  text-align: center;
+}
+
+.galeria h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: black;
+}
+
+.galeria-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  background-color: white;
+}
+
+.galeria-item {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 10px;
+  padding-left: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.galeria-item img {
+  width: 300px; /* Garante que a imagem use toda a largura do contêiner */
+  height: 200px; /* Mantém a proporção original da imagem */
+  border-radius: 5px;
+}
+
+.galeria-item p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Estilo com transformação */
+.transform-item {
+  transform: scale(1);
+}
+
+.transform-item:hover {
+  transform: scale(1.1); /* Aumenta a imagem ao passar o mouse */
+}
+
+/* Efeito de hover em outra imagem */
+.hover-item img {
+  transition: opacity 0.3s ease;
+}
+
+.hover-item img:hover {
+  opacity: 0.7; /* Aplica um efeito de opacidade ao passar o mouse */
+}
+
+/* Responsividade - alinhar em 3 imagens por linha */
+.galeria-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Organiza de forma espaçada */
+}
+
+.galeria-item {
+  flex: 1 1 calc(33.33% - 40px); /* Ocupa um terço da linha */
+  max-width: 300px; /* Limita a largura */
+}
+
+@media (max-width: 768px) {
+  .galeria-item {
+      flex: 1 1 calc(50% - 40px); /* Em telas menores, duas por linha */
+  }
+}
+
+@media (max-width: 480px) {
+  .galeria-item {
+      flex: 1 1 100%; /* Em telas muito pequenas, uma por linha */
+  }
+}
 }
