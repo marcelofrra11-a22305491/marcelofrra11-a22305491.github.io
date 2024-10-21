@@ -245,4 +245,21 @@
     transform: rotate(360deg);
     transition: 0.5s;
   }
+
+  .parallax{
+    background-image: url("images/wallpaper_24-3_4post.jpg");
+    min-height: 200px;
+    height: 50vh; 
+    background-attachment: fixed;
+    background-color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+  }
+
+  .parallaxtexto{
+    background-color: white;
+    color:black;
+  }
 }
