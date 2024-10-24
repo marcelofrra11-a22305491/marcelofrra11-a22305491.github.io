@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}   
+  header {
+    background-color:lightgray;
+    text-align:center;
+    padding: 2%;
+    border-radius:10px;
+  }
+
+  body article{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 100px ;
+    grid-template-areas: "Introducao Laboratorios;"
+  }
+
+ 
+footer{
+    text-align: center;
+    background-color:lightgray;
+    padding: 2%;
+    border-radius:10px;
+
+}
+#Introducao{
+    grid-area: Introducao;
+}
+
+#Laboratorios {
+    grid-area: Laboratorios;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 20px;
+    
+}
+
+
+#Laboratorios section {
+    position:relative;
+    top: 0;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+  }
+
+ 
+  
+  #Laboratorios nav a:visited {
+    background-color: gray;
+  }
+  
+  #Laboratorios nav a:hover {
+    background-color: gray;
+  }
+  
+  #Laboratorios nav a:active {
+    background-color: gray;
+  }
+
+
