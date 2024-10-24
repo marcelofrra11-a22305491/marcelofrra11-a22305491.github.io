@@ -11,8 +11,8 @@
 
   body article{
     display: grid;
-    grid-template-columns: 2fr 2fr;
-    grid-template-rows: 100px ;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 50px ;
     grid-template-areas: "Introducao Laboratorios;"
   }
 
@@ -61,6 +61,12 @@ footer{
   
   #Laboratorios nav a:active {
     background-color: gray;
+  }
+  #Laboratorios a{
+    background-color: lightgray;
+    border-radius: 25%;
+    justify-content: space-between;
+    
   }
 
 
