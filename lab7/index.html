@@ -6,7 +6,30 @@
 
     <title>Lab</title>
 </head>
+<style>
+    /* Estilos para o menu de navegação */
+    nav {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #4CAF50;
+    }
+</style>
 <body>
+    <nav>
+        <a href="eventos.html">Eventos Interativos</a>
+    </nav>
 
     <div class="container">
         <div class="section">
@@ -35,7 +58,8 @@
         </div>
 
         <div class="section">
-            <h2>5. Conta! <span id="counter">0</span></h2>
+            <h2>5.<br><button onclick="incrementCounter()">Conta</button> <span id="counter">0</span></h2>
+            
         </div>
     </div>
 
