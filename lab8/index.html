@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Lab</title>
+</head>
+
+<body>
+    <nav>
+        <a href="eventos.html">Eventos Interativos</a>
+    </nav>
+
+    <div class="container">
+        <div class="section">
+            <h2 id="h2mudatexto" onmouseout="restauraTexto()"  onmouseover="muda_texto()">1. Passa por aqui!</h2>
+             
+        </div>
+
+        <div class="section">
+            <h2>2. <span id="colorDisplay">Pinta-me!</span></h2>
+            <div class="color-buttons">
+                <!-- Botões com atributo data-color para definir a cor -->
+                <button data-color="red">Red</button>
+                <button data-color="green">Green</button>
+                <button data-color="blue">Blue</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Experimenta escrever...</h2>
+            <input type="text" id="textInput" placeholder="Escreva algo...">
+        </div>
+
+        <div class="section">
+            <h2>4. Escolha uma cor:</h2>
+            <!-- Dropdown para seleção de cores -->
+            <select id="colorInput" onchange="changeBackgroundColor()">
+                <option value="white">White</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+            </select>
+        </div>
+        
+        <script>
+            function changeBackgroundColor() {
+                // Obtém a cor selecionada no dropdown
+                const selectedColor = document.getElementById('colorInput').value;
+        
+                // Aplica a cor selecionada como fundo do corpo da página
+                document.body.style.backgroundColor = selectedColor;
+                document.querySelector('body').style.backgroundColor = this.value;
+            }
+        </script>
+        <div class="section">
+            <h2>5.<br><button onclick="incrementCounter()">Conta</button> <span id="counter">0</span></h2>
+            
+        </div>
+        <div class="section">
+            <h2>6.</h2>
+            <!-- Caixa de texto para inserir o nome -->
+            <input type="text" id="nameInput" placeholder="Insira o seu nome">
+            
+            <!-- Caixa de texto para inserir a idade -->
+            <input type="number" id="ageInput" placeholder="Insira a sua idade">
+            
+            <!-- Botão para gerar a mensagem -->
+            <button onclick="showMessage()">Enviar</button>
+            
+            <!-- Espaço para exibir a mensagem personalizada -->
+            <p id="message"></p>
+        </div>
+        <div class="section" id="div7">
+            <h2>7.</h2>
+            <label>Automatic Counter:</label>
+            <span id="counter2">0</span>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

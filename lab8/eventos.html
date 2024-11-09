@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interatividade com Eventos</title>
+    <style>
+        /* Estilos para o menu de navegação */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        /* Estilos principais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding-top: 60px; /* Espaço para o menu fixo */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        h1 {
+            font-size: 1.8em;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        #colorBox {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 0 auto 20px;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+
+        button, input[type="text"], form button {
+            padding: 10px 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        button:hover, form button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #textInput {
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        form {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #555;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu de Navegação -->
+    <nav>
+      
+        <a href="index.html">Inicio</a>
+        
+    </nav>
+
+    <div class="container">
+        <h1>Explorando Eventos JavaScript</h1>
+
+        <!-- Eventos de Mouse -->
+        <div id="colorBox">Passe o mouse aqui!</div>
+        <button id="clickButton">Clique em mim!</button>
+        
+        <!-- Eventos de Teclado -->
+        <input type="text" id="textInput" placeholder="Digite algo aqui..." />
+
+        <!-- Eventos de Formulário -->
+        <form id="myForm">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">Enviar</button>
+        </form>
+
+        <!-- Exibição de mensagens -->
+        <p id="message">Mensagens aparecerão aqui.</p>
+    </div>
+
+    <script>
+        // Seção de variáveis globais
+        const message = document.getElementById("message");
+        const colorBox = document.getElementById("colorBox");
+        const clickButton = document.getElementById("clickButton");
+        const textInput = document.getElementById("textInput");
+        const form = document.getElementById("myForm");
+        const nameInput = document.getElementById("name");
+
+        // Funções de Manipulação de Eventos
+
+        // Evento de clique
+        function handleClick() {
+            message.textContent = "Botão clicado!";
+        }
+
+        // Evento de duplo clique
+        function handleDoubleClick() {
+            message.textContent = "Caixa clicada duas vezes!";
+        }
+
+        // Evento de mouseover - muda cor ao passar o mouse
+        function handleMouseOver() {
+            colorBox.style.backgroundColor = "lightgreen";
+        }
+
+        // Evento de mouseout - restaura cor ao tirar o mouse
+        function handleMouseOut() {
+            colorBox.style.backgroundColor = "lightblue";
+        }
+
+        // Evento de movimento do mouse - exibe coordenadas
+        function handleMouseMove(event) {
+            message.textContent = `Coordenadas: X=${event.offsetX}, Y=${event.offsetY}`;
+        }
+
+        // Evento de tecla pressionada - exibe tecla pressionada
+        function handleKeyDown(event) {
+            message.textContent = `Tecla pressionada: ${event.key}`;
+        }
+
+        // Evento de tecla solta
+        function handleKeyUp() {
+            message.textContent = "Tecla liberada!";
+        }
+
+        // Evento de alteração no campo de nome
+        function handleChange() {
+            message.textContent = `Nome alterado para: ${nameInput.value}`;
+        }
+
+        // Evento de envio do formulário - exibe mensagem de sucesso
+        function handleSubmit(event) {
+            event.preventDefault();
+            message.innerHTML = `<strong>Formulário enviado com sucesso!</strong>`;
+        }
+
+        // Adicionando os Eventos com addEventListener
+
+        // Eventos de mouse
+        clickButton.addEventListener("click", handleClick);
+        colorBox.addEventListener("dblclick", handleDoubleClick);
+        colorBox.addEventListener("mouseover", handleMouseOver);
+        colorBox.addEventListener("mouseout", handleMouseOut);
+        colorBox.addEventListener("mousemove", handleMouseMove);
+
+        // Eventos de teclado
+        textInput.addEventListener("keydown", handleKeyDown);
+        textInput.addEventListener("keyup", handleKeyUp);
+
+        // Eventos de formulário
+        nameInput.addEventListener("change", handleChange);
+        form.addEventListener("submit", handleSubmit);
+    </script>
+</body>
+</html>
