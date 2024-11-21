@@ -73,4 +73,70 @@ function criarProduto(produto) {
 
     return article;
 }
+function atualizaCesto() {
+    // Buscar a lista de produtos do localStorage
+    const selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
+    
+    // Selecionar o elemento do DOM onde os produtos serão exibidos
+    const cestoContainer = document.getElementById('cesto');
+    cestoContainer.innerHTML = ''; // Limpar o cesto antes de adicionar os produtos
+
+    // Adicionar cada produto ao DOM
+    selectedProducts.forEach(produto => {
+        const article = criaProdutoCesto(produto);
+        cestoContainer.appendChild(article);
+    });
+
+    // Atualizar o preço total
+    atualizaPrecoTotal();
+}
+function criaProdutoCesto(produto) {
+    // Criar o elemento <article>
+    const article = document.createElement('article');
+
+    // Adicionar título
+    const title = document.createElement('h2');
+    title.textContent = produto.title;
+    article.appendChild(title);
+
+    // Adicionar preço
+    const price = document.createElement('p');
+    price.textContent = `Preço: $${produto.price}`;
+    article.appendChild(price);
+
+    // Criar botão "Remover"
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remover do cesto';
+    article.appendChild(removeButton);
+
+    // Adicionar evento para remover o produto
+    removeButton.addEventListener('click', () => {
+        // Obter a lista atual de produtos
+        let selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
+
+        // Remover o produto usando filter
+        selectedProducts = selectedProducts.filter(p => p.title !== produto.title);
+
+        // Atualizar o localStorage
+        localStorage.setItem('produtos-selecionados', JSON.stringify(selectedProducts));
+
+        // Atualizar o DOM do cesto
+        atualizaCesto();
+    });
+
+    return article;
+}
+function atualizaPrecoTotal() {
+    const selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
+
+    // Calcular o preço total
+    const total = selectedProducts.reduce((acc, produto) => acc + produto.price, 0);
+
+    // Selecionar o elemento do DOM para exibir o preço total
+    const totalElement = document.getElementById('preco-total');
+    totalElement.textContent = `Preço Total: $${total.toFixed(2)}`;
+}
+document.addEventListener('DOMContentLoaded', () => {
+    atualizaCesto();
+});
 
