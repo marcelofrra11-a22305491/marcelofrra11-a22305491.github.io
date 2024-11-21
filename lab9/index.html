@@ -3,94 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Loja Online</title>
     <style>
         /* Estilo básico de layout */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #444;
-            padding: 0.5rem 0;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-
-        main {
-            display: flex;
-            justify-content: space-between;
-            padding: 2rem;
-        }
-
-        section#produtos {
-            flex: 2;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        article {
-            background-color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        article img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        article h3 {
-            margin: 1rem 0;
-            font-size: 1.2rem;
-        }
-
-        section#cesto {
-            flex: 1;
-            background-color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        footer p {
-            margin: 0;
-        }
+      
     </style>
 </head>
 <body>
@@ -114,7 +31,6 @@
     <main>
         <!-- Lista de produtos -->
         <section id="produtos">
-            <h2>Produtos</h2>
             <!-- Produtos serão inseridos dinamicamente aqui -->
         </section>
 
@@ -130,42 +46,8 @@
         <p>&copy; 2024 Loja Online</p>
     </footer>
 
-    <script>
-        // Exemplo de como criar produtos dinamicamente
-        const produtos = [
-            { nome: 'Produto 1', imagem: 'produto1.jpg', preco: 'R$ 99,99' },
-            { nome: 'Produto 2', imagem: 'produto2.jpg', preco: 'R$ 129,99' },
-            { nome: 'Produto 3', imagem: 'produto3.jpg', preco: 'R$ 79,99' },
-            { nome: 'Produto 4', imagem: 'produto4.jpg', preco: 'R$ 49,99' }
-        ];
-
-        const listaProdutos = document.querySelector('#produtos');
-
-        // Função para criar cada produto
-        function criarProduto(produto) {
-            const artigo = document.createElement('article');
-
-            artigo.innerHTML = `
-                <img src="${produto.imagem}" alt="Imagem de ${produto.nome}">
-                <h3>${produto.nome}</h3>
-                <p>Preço: ${produto.preco}</p>
-                <button onclick="adicionarAoCesto('${produto.nome}', '${produto.preco}')">Adicionar ao Cesto</button>
-            `;
-            return artigo;
-        }
-
-        // Adicionando os produtos ao DOM
-        produtos.forEach(produto => {
-            listaProdutos.appendChild(criarProduto(produto));
-        });
-
-        // Função para adicionar ao cesto
-        function adicionarAoCesto(nome, preco) {
-            const cesto = document.querySelector('#cesto');
-            const item = document.createElement('p');
-            item.textContent = `${nome} - ${preco}`;
-            cesto.appendChild(item);
-        }
-    </script>
+    
 </body>
+<script src="produtos.js"></script>
+<script src="main.js"></script>
 </html>
