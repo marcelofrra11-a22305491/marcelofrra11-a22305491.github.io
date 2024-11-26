@@ -99,6 +99,12 @@ function criaProdutoCesto(produto) {
     title.textContent = produto.title;
     article.appendChild(title);
 
+    // Adicionar imagem
+    const img = document.createElement('img');
+    img.src = produto.image;
+    img.alt = produto.title;
+    article.appendChild(img);
+
     // Adicionar preço
     const price = document.createElement('p');
     price.textContent = `Preço: $${produto.price}`;
@@ -140,3 +146,37 @@ document.addEventListener('DOMContentLoaded', () => {
     atualizaCesto();
 });
 
+
+// Atualiza o custo total na seção do resumo do cesto
+function atualizaResumoCesto() {
+    const selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
+    const total = selectedProducts.reduce((acc, produto) => acc + produto.price, 0);
+
+    const custoTotalElement = document.getElementById('custo-total');
+    custoTotalElement.textContent = `${total.toFixed(2)} €`;
+}
+
+// Listener para o botão "Comprar"
+document.getElementById('comprar-btn').addEventListener('click', () => {
+    const estudante = document.getElementById('estudante').checked;
+    const cupom = document.getElementById('cupom').value.trim();
+    let total = parseFloat(document.getElementById('custo-total').textContent);
+
+    if (estudante) {
+        total *= 0.9; // Aplica 10% de desconto se for estudante
+    }
+
+    if (cupom === 'DESCONTO10') {
+        total *= 0.9; // Aplica 10% de desconto adicional
+    }
+
+    alert(`Compra efetuada com sucesso! Total: ${total.toFixed(2)} €`);
+    localStorage.setItem('produtos-selecionados', JSON.stringify([])); // Limpa o cesto
+    atualizaCesto(); // Atualiza o cesto no DOM
+    atualizaResumoCesto(); // Atualiza o custo total
+});
+
+// Atualiza o resumo do cesto quando a página é carregada
+document.addEventListener('DOMContentLoaded', () => {
+    atualizaResumoCesto();
+});
