@@ -1,182 +1,195 @@
-// Certifique-se de que o DOM está completamente carregado antes de executar o código
-document.addEventListener('DOMContentLoaded', () => {
-    carregarProdutos(produtos); // Chama a função carregarProdutos com a lista de produtos
-});
+const API_BASE_URL = 'https://deisishop.pythonanywhere.com';
+let produtosCache = []; // Cache para armazenar os produtos carregados da API
+let cesto = []; // Lista de produtos no cesto
 
-if (!localStorage.getItem('produtos-selecionados')) {
-    localStorage.setItem('produtos-selecionados', JSON.stringify([]));
+// Função para buscar categorias da API
+async function carregarCategorias() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/categories/`);
+        if (!response.ok) throw new Error('Erro ao obter categorias');
+
+        const categorias = await response.json();
+
+        // Atualizar o select com as categorias
+        const selectCategorias = document.getElementById('categorias');
+        categorias.forEach(categoria => {
+            const option = document.createElement('option');
+            option.value = categoria.toLowerCase();
+            option.textContent = categoria;
+            selectCategorias.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar categorias:', error);
+    }
 }
 
-// Função para carregar todos os produtos
-function carregarProdutos(produtos) {
-    // Seleciona o elemento onde os produtos serão renderizados (pai)
+// Função para buscar produtos da API
+async function carregarProdutosDaAPI() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/products/`);
+        if (!response.ok) throw new Error('Erro ao obter produtos');
+
+        const produtos = await response.json();
+        produtosCache = produtos; // Salvar produtos no cache
+        return produtos;
+    } catch (error) {
+        console.error('Erro ao carregar produtos:', error);
+        return [];
+    }
+}
+
+// Função para carregar produtos com filtros, ordenação e pesquisa
+async function carregarProdutos({ categoria = 'todas', ordem = 'precoCrescente', pesquisa = '' } = {}) {
     const secaoProdutos = document.querySelector("#produtos");
+    secaoProdutos.innerHTML = ''; // Limpa a seção antes de renderizar
 
-    // Percorre cada produto e o renderiza no DOM
-    produtos.forEach((produto) => {
-        console.log(produto); // Imprime o produto no console
-        console.log(produto.id, produto.title); // Imprime campos específicos (id e title)
+    let produtos = produtosCache.length ? produtosCache : await carregarProdutosDaAPI();
 
-        // Cria o elemento <article> para o produto
+    // Filtrar por categoria
+    if (categoria !== 'todas') {
+        produtos = produtos.filter(produto => produto.category.toLowerCase() === categoria);
+    }
+
+    // Filtrar por nome do produto
+    if (pesquisa) {
+        produtos = produtos.filter(produto =>
+            produto.title.toLowerCase().includes(pesquisa.toLowerCase())
+        );
+    }
+
+    // Ordenar os produtos
+    produtos = produtos.sort((a, b) => {
+        if (ordem === 'precoCrescente') {
+            return a.price - b.price;
+        } else if (ordem === 'precoDecrescente') {
+            return b.price - a.price;
+        }
+    });
+
+    // Renderizar os produtos filtrados e ordenados
+    produtos.forEach(produto => {
         const produtoElement = criarProduto(produto);
-
-        // Adiciona o <article> criado na seção de produtos
         secaoProdutos.appendChild(produtoElement);
     });
 }
 
-// Função para criar um elemento <article> para cada produto
+// Função para criar elementos do produto
 function criarProduto(produto) {
-    // Criar o elemento <article> para o produto
     const article = document.createElement('article');
 
-    // Adicionar título
+    // Título
     const title = document.createElement('h2');
     title.textContent = produto.title;
     article.appendChild(title);
 
-    // Adicionar imagem
+    // Imagem
     const img = document.createElement('img');
     img.src = produto.image;
     img.alt = produto.title;
     article.appendChild(img);
 
-    // Adicionar descrição
+    // Descrição
     const description = document.createElement('p');
     description.textContent = produto.description;
     article.appendChild(description);
 
-    // Adicionar preço
+    // Preço
     const price = document.createElement('p');
-    price.textContent = `Preço: $${produto.price}`;
+    price.textContent = `Preço: $${produto.price.toFixed(2)}`;
     article.appendChild(price);
 
-    // Criar botão "+ Adicionar ao cesto"
+    // Botão para adicionar ao cesto
     const addButton = document.createElement('button');
-    addButton.textContent = '+ Adicionar ao cesto';
+    addButton.textContent = 'Adicionar ao Cesto';
+    addButton.addEventListener('click', () => adicionarAoCesto(produto));
     article.appendChild(addButton);
 
-    // Evento ao clicar no botão
-    addButton.addEventListener('click', () => {
-        // Obter produtos existentes no cesto
-        const selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
-
-        // Adicionar o novo produto ao cesto
-        selectedProducts.push(produto);
-
-        // Atualizar o localStorage
-        localStorage.setItem('produtos-selecionados', JSON.stringify(selectedProducts));
-
-        // Feedback para o utilizador
-        alert(`${produto.title} foi adicionado ao cesto!`);
-    });
-
     return article;
 }
-function atualizaCesto() {
-    // Buscar a lista de produtos do localStorage
-    const selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
-    
-    // Selecionar o elemento do DOM onde os produtos serão exibidos
-    const cestoContainer = document.getElementById('cesto');
-    cestoContainer.innerHTML = ''; // Limpar o cesto antes de adicionar os produtos
 
-    // Adicionar cada produto ao DOM
-    selectedProducts.forEach(produto => {
-        const article = criaProdutoCesto(produto);
-        cestoContainer.appendChild(article);
+// Função para adicionar produto ao cesto
+function adicionarAoCesto(produto) {
+    cesto.push(produto);
+    atualizarCesto();
+}
+
+// Função para remover produto do cesto
+function removerDoCesto(index) {
+    cesto.splice(index, 1); // Remove o produto pelo índice
+    atualizarCesto();
+}
+
+// Função para atualizar o cesto no DOM
+function atualizarCesto() {
+    const listaCesto = document.getElementById('lista-cesto');
+    const totalCesto = document.getElementById('total-cesto');
+    listaCesto.innerHTML = ''; // Limpa o cesto
+
+    let total = 0;
+
+    cesto.forEach((produto, index) => {
+        total += produto.price;
+
+        // Criar o item do cesto
+        const item = document.createElement('li');
+        item.classList.add('item-cesto');
+
+        // Criar a imagem do produto
+        const img = document.createElement('img');
+        img.src = produto.image;  // Supondo que o produto tenha uma propriedade 'image' com o URL da imagem
+        img.alt = produto.title;
+        img.style.width = '50px';  // Definindo o tamanho da imagem
+        img.style.height = '50px'; // Tamanho fixo para manter a consistência
+        img.style.marginRight = '10px'; // Espaçamento à direita da imagem
+        item.appendChild(img); // Adiciona a imagem ao item
+
+        // Criar o texto do produto (nome e preço)
+        const texto = document.createElement('span');
+        texto.textContent = `${produto.title} - $${produto.price.toFixed(2)}`;
+        item.appendChild(texto); // Adiciona o texto ao item
+
+        // Botão de remover do cesto
+        const btnRemover = document.createElement('button');
+        btnRemover.textContent = 'Remover';
+        btnRemover.onclick = () => removerDoCesto(index);
+        item.appendChild(btnRemover); // Adiciona o botão de remover
+
+        // Adicionar o item à lista
+        listaCesto.appendChild(item);
     });
 
-    // Atualizar o preço total
-    atualizaPrecoTotal();
-}
-function criaProdutoCesto(produto) {
-    // Criar o elemento <article>
-    const article = document.createElement('article');
-
-    // Adicionar título
-    const title = document.createElement('h2');
-    title.textContent = produto.title;
-    article.appendChild(title);
-
-    // Adicionar imagem
-    const img = document.createElement('img');
-    img.src = produto.image;
-    img.alt = produto.title;
-    article.appendChild(img);
-
-    // Adicionar preço
-    const price = document.createElement('p');
-    price.textContent = `Preço: $${produto.price}`;
-    article.appendChild(price);
-
-    // Criar botão "Remover"
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remover do cesto';
-    article.appendChild(removeButton);
-
-    // Adicionar evento para remover o produto
-    removeButton.addEventListener('click', () => {
-        // Obter a lista atual de produtos
-        let selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
-
-        // Remover o produto usando filter
-        selectedProducts = selectedProducts.filter(p => p.title !== produto.title);
-
-        // Atualizar o localStorage
-        localStorage.setItem('produtos-selecionados', JSON.stringify(selectedProducts));
-
-        // Atualizar o DOM do cesto
-        atualizaCesto();
-    });
-
-    return article;
-}
-function atualizaPrecoTotal() {
-    const selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
-
-    // Calcular o preço total
-    const total = selectedProducts.reduce((acc, produto) => acc + produto.price, 0);
-
-    // Selecionar o elemento do DOM para exibir o preço total
-    const totalElement = document.getElementById('preco-total');
-    totalElement.textContent = `Preço Total: $${total.toFixed(2)}`;
-}
-document.addEventListener('DOMContentLoaded', () => {
-    atualizaCesto();
-});
-
-
-// Atualiza o custo total na seção do resumo do cesto
-function atualizaResumoCesto() {
-    const selectedProducts = JSON.parse(localStorage.getItem('produtos-selecionados')) || [];
-    const total = selectedProducts.reduce((acc, produto) => acc + produto.price, 0);
-
-    const custoTotalElement = document.getElementById('custo-total');
-    custoTotalElement.textContent = `${total.toFixed(2)} €`;
+    totalCesto.textContent = total.toFixed(2); // Atualiza o total no cesto
 }
 
 // Listener para o botão "Comprar"
 document.getElementById('comprar-btn').addEventListener('click', () => {
-    const estudante = document.getElementById('estudante').checked;
-    const cupom = document.getElementById('cupom').value.trim();
-    let total = parseFloat(document.getElementById('custo-total').textContent);
-
-    if (estudante) {
-        total *= 0.9; // Aplica 10% de desconto se for estudante
+    if (cesto.length === 0) {
+        alert('Seu cesto está vazio!');
+        return;
     }
 
-    if (cupom === 'DESCONTO10') {
-        total *= 0.9; // Aplica 10% de desconto adicional
-    }
-
-    alert(`Compra efetuada com sucesso! Total: ${total.toFixed(2)} €`);
-    localStorage.setItem('produtos-selecionados', JSON.stringify([])); // Limpa o cesto
-    atualizaCesto(); // Atualiza o cesto no DOM
-    atualizaResumoCesto(); // Atualiza o custo total
+    const total = parseFloat(document.getElementById('total-cesto').textContent);
+    alert(`Compra realizada com sucesso! Total: €${total.toFixed(2)}`);
+    cesto = []; // Limpar o cesto após a compra
+    atualizarCesto();
 });
 
-// Atualiza o resumo do cesto quando a página é carregada
+// Listener para filtros e pesquisa
+document.getElementById('categorias').addEventListener('change', aplicarFiltros);
+document.getElementById('ordenar').addEventListener('change', aplicarFiltros);
+document.getElementById('pesquisa').addEventListener('input', aplicarFiltros);
+
+// Função para aplicar filtros e atualizar a lista
+function aplicarFiltros() {
+    const categoria = document.getElementById('categorias').value;
+    const ordem = document.getElementById('ordenar').value;
+    const pesquisa = document.getElementById('pesquisa').value;
+
+    carregarProdutos({ categoria, ordem, pesquisa });
+}
+
+// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
-    atualizaResumoCesto();
+    carregarCategorias();
+    carregarProdutos();
 });

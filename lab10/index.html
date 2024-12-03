@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Loja Online</title>
-    <style>
-        /* Estilo básico de layout */
-      
-    </style>
 </head>
 <body>
-
     <!-- Cabeçalho -->
     <header>
         <h1>Loja Online</h1>
@@ -26,26 +21,24 @@
             <li><a href="#">Sobre</a></li>
         </ul>
     </nav>
-    <!-- Filtro, Ordenação e Busca -->
 
+    <!-- Filtro, Ordenação e Busca -->
     <section id="filtros">
-        <label for="filtrar">Filtrar:</label>
-        <select id="filtrar">
+        <label for="categorias">Filtrar por Categoria:</label>
+        <select id="categorias">
             <option value="todas">Todas</option>
-            <option value="tshirt">T-shirts</option>
-            <option value="caneca">Canecas</option>
-            <option value="meias">Meias</option>
         </select>
-    
+
         <label for="ordenar">Ordenar:</label>
         <select id="ordenar">
             <option value="precoCrescente">Preço Crescente</option>
             <option value="precoDecrescente">Preço Decrescente</option>
         </select>
-    
-        <label for="buscar">Procurar:</label>
-        <input type="text" id="buscar" placeholder="Digite o nome do produto">
+
+        <label for="pesquisa">Pesquisar Produto:</label>
+        <input type="text" id="pesquisa" placeholder="Digite o nome do produto">
     </section>
+
     <!-- Conteúdo principal -->
     <main>
         <!-- Lista de produtos -->
@@ -54,26 +47,35 @@
         </section>
 
         <!-- Cesto de compras -->
-        <section id="cesto">
-                <!-- Produtos do cesto serão adicionados aqui -->
-        
-            <p id="preco-total">Preço Total: $0.00</p>
-            
-        </section>
-        <section id="resumo-cesto">
-            <h3>Custo Total: <span id="custo-total">0.00 €</span></h3>
-            <div>
-                <label for="estudante">
-                    <input type="checkbox" id="estudante"> É estudante do DEISI?
-                </label>
-            </div>
-            <div>
-                <label for="cupom">Cupão de desconto:</label>
-                <input type="text" id="cupom" placeholder="Insira o código">
-            </div>
-            <button id="comprar-btn">Comprar</button>
-        </section>
-        
+      <!-- Cesto de compras -->
+<section id="cesto">
+    <h3>Seu Cesto</h3>
+    <ul id="lista-cesto">
+        <!-- Itens do cesto serão inseridos dinamicamente -->
+    </ul>
+    <p>Total: $<span id="total-cesto">0.00</span></p>
+</section>
+
+<!-- Resumo da compra -->
+<section id="resumo-cesto">
+    <h3>Custo Total: <span id="custo-total">0.00 €</span></h3>
+    
+    <!-- Checkbox para estudante -->
+    <div>
+        <label for="estudante">
+            <input type="checkbox" id="estudante"> É estudante do DEISI?
+        </label>
+    </div>
+    
+    <!-- Campo para cupom de desconto -->
+    <div>
+        <label for="cupom">Cupão de desconto:</label>
+        <input type="text" id="cupom" placeholder="Insira o código">
+    </div>
+    
+    <!-- Botão de compra -->
+    <button id="comprar-btn">Comprar</button>
+</section>
     </main>
 
     <!-- Rodapé -->
@@ -81,8 +83,6 @@
         <p>&copy; 2024 Loja Online</p>
     </footer>
 
-    
+    <script src="main.js"></script>
 </body>
-<script src="produtos.js"></script>
-<script src="main.js"></script>
 </html>
