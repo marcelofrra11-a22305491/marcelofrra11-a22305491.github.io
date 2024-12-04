@@ -53,29 +53,37 @@
     <ul id="lista-cesto">
         <!-- Itens do cesto serão inseridos dinamicamente -->
     </ul>
-    <p>Total: $<span id="total-cesto">0.00</span></p>
+    
 </section>
 
 <!-- Resumo da compra -->
 <section id="resumo-cesto">
-    <h3>Custo Total: <span id="custo-total">0.00 €</span></h3>
-    
+    <h3>Custo Total: <span id="total-cesto">0.00 €</span></h3>
+
     <!-- Checkbox para estudante -->
     <div>
         <label for="estudante">
             <input type="checkbox" id="estudante"> É estudante do DEISI?
         </label>
     </div>
-    
+
     <!-- Campo para cupom de desconto -->
     <div>
         <label for="cupom">Cupão de desconto:</label>
         <input type="text" id="cupom" placeholder="Insira o código">
     </div>
-    
+
     <!-- Botão de compra -->
     <button id="comprar-btn">Comprar</button>
+
+    <!-- Exibição do valor final e da referência -->
+    <div>
+        <p>Valor final a pagar (com eventuais descontos): <span id="valor-final">0.00 €</span></p>
+        <p>Referência de pagamento: <span id="referencia-pagamento">---</span></p>
+    </div>
 </section>
+
+
     </main>
 
     <!-- Rodapé -->

@@ -193,3 +193,47 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarCategorias();
     carregarProdutos();
 });
+
+function atualizarCesto() {
+    const listaCesto = document.getElementById('lista-cesto');
+    const totalCesto = document.getElementById('total-cesto'); // Valor total do cesto (seção principal)
+    const custoTotal = document.getElementById('custo-total'); // Valor na seção resumo-cesto
+    listaCesto.innerHTML = ''; // Limpa o cesto
+
+    let total = 0;
+
+    cesto.forEach((produto, index) => {
+        total += produto.price;
+
+        // Criar o item do cesto
+        const item = document.createElement('li');
+        item.classList.add('item-cesto');
+
+        // Criar a imagem do produto
+        const img = document.createElement('img');
+        img.src = produto.image;  // Supondo que o produto tenha uma propriedade 'image' com o URL da imagem
+        img.alt = produto.title;
+        img.style.width = '50px';  // Definindo o tamanho da imagem
+        img.style.height = '50px'; // Tamanho fixo para manter a consistência
+        img.style.marginRight = '10px'; // Espaçamento à direita da imagem
+        item.appendChild(img); // Adiciona a imagem ao item
+
+        // Criar o texto do produto (nome e preço)
+        const texto = document.createElement('span');
+        texto.textContent = `${produto.title} - $${produto.price.toFixed(2)}`;
+        item.appendChild(texto); // Adiciona o texto ao item
+
+        // Botão de remover do cesto
+        const btnRemover = document.createElement('button');
+        btnRemover.textContent = 'Remover';
+        btnRemover.onclick = () => removerDoCesto(index);
+        item.appendChild(btnRemover); // Adiciona o botão de remover
+
+        // Adicionar o item à lista
+        listaCesto.appendChild(item);
+    });
+
+    // Atualiza os valores do total no cesto e no resumo-cesto
+    totalCesto.textContent = total.toFixed(2); // Atualiza o total no cesto principal
+    custoTotal.textContent = `${total.toFixed(2)} €`; // Atualiza o custo total na seção resumo-cesto
+}
