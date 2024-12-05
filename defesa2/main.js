@@ -51,18 +51,26 @@ async function carregarProdutos({ categoria = 'todas', ordem = 'precoCrescente',
     }
 
     // Filtrar por nome do produto
+      /*
     if (pesquisa) {
         produtos = produtos.filter(produto =>
             produto.title.toLowerCase().includes(pesquisa.toLowerCase())
         );
-    }
+    }  */
+
+if (pesquisa) {
+    produtos = produtos.filter(produto =>
+        produto.title.toLowerCase().includes(pesquisa.toLowerCase()) ||
+        produto.description.toLowerCase().includes(pesquisa.toLowerCase()) // Adicionar filtro por descrição
+    );
+}
 
     // Ordenar os produtos
     produtos = produtos.sort((a, b) => {
         if (ordem === 'precoCrescente') {
-            return a.rate - b.rate;
+            return a.reviews - b.reviews;
         } else if (ordem === 'precoDecrescente') {
-            return b.rate - a.rate;
+            return b.reviews - a.reviews;
         }
     });
 
@@ -71,6 +79,7 @@ async function carregarProdutos({ categoria = 'todas', ordem = 'precoCrescente',
         const produtoElement = criarProduto(produto);
         secaoProdutos.appendChild(produtoElement);
     });
+    
 }
 
 // Função para criar elementos do produto
@@ -113,14 +122,27 @@ function adicionarAoCesto(produto) {
     atualizarCesto();
 }
 
+
+
+
+
+
+
 // Função para remover produto do cesto
 function removerDoCesto(index) {
     cesto.splice(index, 1); // Remove o produto pelo índice
     atualizarCesto();
+    
 }
-
+document.getElementById('menos-info').addEventListener('click', () => {
+    const descricoes = document.querySelectorAll('#produtos article p');
+    descricoes.forEach(descricao => {
+        descricao.style.display = descricao.style.display === 'none' ? 'block' : 'none';
+    });
+});
 // Função para atualizar o cesto no DOM
 function atualizarCesto() {
+    
     const listaCesto = document.getElementById('lista-cesto');
     const totalCesto = document.getElementById('total-cesto');
     listaCesto.innerHTML = ''; // Limpa o cesto
@@ -161,6 +183,9 @@ function atualizarCesto() {
     totalCesto.textContent = total.toFixed(2); // Atualiza o total no cesto
 }
 
+
+
+
 // Listener para o botão "Comprar"
 document.getElementById('comprar-btn').addEventListener('click', () => {
     if (cesto.length === 0) {
@@ -192,6 +217,32 @@ function aplicarFiltros() {
 document.addEventListener('DOMContentLoaded', () => {
     carregarCategorias();
     carregarProdutos();
+});
+const selectOrdenar = document.getElementById('ordenar');
+const optionAvaliacoesCresc = document.createElement('option');
+optionAvaliacoesCresc.value = 'avaliacoesCrescente';
+optionAvaliacoesCresc.textContent = 'Avaliações (Crescente)';
+selectOrdenar.appendChild(optionAvaliacoesCresc);
+
+const optionAvaliacoesDecr = document.createElement('option');
+optionAvaliacoesDecr.value = 'avaliacoesDecrescente';
+optionAvaliacoesDecr.textContent = 'Avaliações (Decrescente)';
+selectOrdenar.appendChild(optionAvaliacoesDecr);
+
+// Atualizar lógica de ordenação no filtro
+produtos = produtos.sort((a, b) => {
+    if (ordem === 'avaliacoesCrescente') {
+        return a.reviews - b.reviews;
+    } else if (ordem === 'avaliacoesDecrescente') {
+        return b.reviews - a.reviews;
+    }
+    // Manter as ordenações existentes
+});
+
+document.getElementById('limpar-cesto').addEventListener('click', () => {
+    cesto = []; // Esvazia o array do cesto
+    removerDoCesto(); // Atualiza a interface
+    alert('Todos os produtos foram removidos do cesto!');
 });
 
 function atualizarCesto() {

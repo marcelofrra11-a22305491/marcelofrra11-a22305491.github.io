@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Loja Online</title>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Loja Online</h1>
+    </header>
+
+    <!-- Menu de navegação -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Produtos</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+    </nav>
+
+    <!-- Filtro, Ordenação e Busca -->
+    <section id="filtros">
+        <label for="categorias">Filtrar por Categoria:</label>
+        <select id="categorias">
+            <option value="todas">Todas</option>
+        </select>
+
+        <label for="ordenar">Ordenar:</label>
+        <select id="ordenar">
+            <option value="precoCrescente">Preço Crescente</option>
+            <option value="precoDecrescente">Preço Decrescente</option>
+        </select>
+
+        <label for="pesquisa">Pesquisar Produto:</label>
+        <input type="text" id="pesquisa" placeholder="Digite o nome do produto">
+
+        <button id="menos-info">Menos Info</button>
+    </section>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <!-- Lista de produtos -->
+        <section id="produtos">
+            <!-- Produtos serão inseridos dinamicamente aqui -->
+        </section>
+
+        <!-- Cesto de compras -->
+      <!-- Cesto de compras -->
+<section id="cesto">
+    <h3>Seu Cesto</h3>
+    <ul id="lista-cesto">
+        <!-- Itens do cesto serão inseridos dinamicamente -->
+    </ul>
+    
+</section>
+
+<!-- Resumo da compra -->
+<section id="resumo-cesto">
+    <h3>Custo Total: <span id="total-cesto">0.00 €</span></h3>
+   
+
+    <!-- Checkbox para estudante -->
+    <div>
+        <label for="estudante">
+            <input type="checkbox" id="estudante"> É estudante do DEISI?
+        </label>
+    </div>
+
+    <!-- Campo para cupom de desconto -->
+    <div>
+        <label for="cupom">Cupão de desconto:</label>
+        <input type="text" id="cupom" placeholder="Insira o código">
+    </div>
+
+    <!-- Botão de compra -->
+    <button id="comprar-btn">Comprar</button>
+
+    <!-- Exibição do valor final e da referência -->
+    <div>
+        <p>Valor final a pagar (com eventuais descontos): <span id="valor-final">0.00 €</span></p>
+        <p>Referência de pagamento: <span id="referencia-pagamento">---</span></p>
+        
+    </div>
+</section>
+
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Loja Online</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
